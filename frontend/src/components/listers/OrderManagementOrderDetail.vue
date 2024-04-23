@@ -14,7 +14,7 @@
             <div>
                 <String label="Status" v-model="item.status" :editMode="editMode" @change="change" />
             </div>
-            <statusType offline label="StatusType" v-model="item.statusType" :editMode="false" :key="false" @change="change" />
+            <StatusType offline label="StatusType" v-model="item.statusType" :editMode="false" :key="false" @change="change" />
         </v-card-text>
 
         <v-card-actions>

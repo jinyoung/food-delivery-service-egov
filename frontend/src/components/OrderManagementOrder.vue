@@ -19,7 +19,7 @@
             <String v-if="editMode" label="Order ID" v-model="value.orderId" :editMode="editMode" :inputUI="''"/>
             <String label="Restaurant ID" v-model="value.restaurantId" :editMode="editMode" :inputUI="''"/>
             <String label="Order Status" v-model="value.status" :editMode="editMode" :inputUI="''"/>
-            <statusType offline label="Order Status 유형" v-model="value.statusType" :editMode="editMode" @change="change"/>
+            <StatusType offline label="Order Status 유형" v-model="value.statusType" :editMode="editMode" @change="change"/>
         </v-card-text>
 
         <v-card-actions>

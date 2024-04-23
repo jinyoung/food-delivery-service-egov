@@ -20,7 +20,7 @@ public class Order {
 
     private String status;
 
-    private statusType statusType;
+    private StatusType statusType;
 
     @PrePersist
     public void onPrePersist() {}
