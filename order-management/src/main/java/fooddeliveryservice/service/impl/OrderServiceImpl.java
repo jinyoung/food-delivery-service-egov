@@ -40,7 +40,7 @@ public class OrderServiceImpl
     }
 
     @Override
-    public Optional<Order> getOrderById(Long id) throws Exception {
+    public Optional<Order> getOrderById(String id) throws Exception {
         // Get a order by ID
         return orderRepository.findById(id);
     }
@@ -54,7 +54,7 @@ public class OrderServiceImpl
     @Override
     public Order updateOrder(Order order) throws Exception {
         // Update an existing order via OrderService
-        if (orderRepository.existsById(order.getId())) {
+        if (orderRepository.existsById(order.getOrderId())) {
             return orderRepository.save(order);
         } else {
             throw processException("info.nodata.msg");
