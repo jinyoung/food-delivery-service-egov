@@ -38,9 +38,9 @@ public class RiderServiceImpl
     }
 
     @Override
-    public Optional<Rider> getRiderById(Long id) throws Exception {
+    public Optional<Rider> getRiderById(String riderId) throws Exception {
         // Get a rider by ID
-        return riderRepository.findById(id);
+        return riderRepository.findById(riderId);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class RiderServiceImpl
     @Override
     public Rider updateRider(Rider rider) throws Exception {
         // Update an existing rider via RiderService
-        if (riderRepository.existsById(rider.getId())) {
+        if (riderRepository.existsById(rider.getRiderId())) {
             return riderRepository.save(rider);
         } else {
             throw processException("info.nodata.msg");

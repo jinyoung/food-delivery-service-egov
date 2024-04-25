@@ -55,7 +55,7 @@ public class OrderController {
     }
 
     @RequestMapping(
-        value = "order/{id}/",
+        value = "order/{id}/acceptorder",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )
@@ -69,7 +69,7 @@ public class OrderController {
     }
 
     @RequestMapping(
-        value = "order/{id}/",
+        value = "order/{id}/rejectorder",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )
@@ -83,7 +83,7 @@ public class OrderController {
     }
 
     @RequestMapping(
-        value = "order/{id}/",
+        value = "order/{id}/preparefood",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )
@@ -97,7 +97,7 @@ public class OrderController {
     }
 
     @RequestMapping(
-        value = "order/{id}/",
+        value = "order/{id}/notifyrider",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )

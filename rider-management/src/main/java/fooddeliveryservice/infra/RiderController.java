@@ -55,7 +55,7 @@ public class RiderController {
     }
 
     @RequestMapping(
-        value = "rider/{id}/",
+        value = "rider/{id}/pickupfood",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )
@@ -69,7 +69,7 @@ public class RiderController {
     }
 
     @RequestMapping(
-        value = "rider/{id}/",
+        value = "rider/{id}/completedelivery",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )
