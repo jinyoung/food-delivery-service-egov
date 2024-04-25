@@ -15,10 +15,10 @@ import org.springframework.web.servlet.DispatcherServlet;
  * @Description : 공통 컴포넌트 3.10 EgovWebApplicationInitializer 참조 작성
  *
  * @author : 윤주호
- * @since  : 2021. 7. 20
+ * @since : 2021. 7. 20
  * @version : 1.0
  *
- * <pre>
+ *          <pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일              수정자               수정내용
@@ -39,7 +39,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 ---
 
  *   2021. 7. 20    윤주호               최초 생성
- * </pre>
+ *          </pre>
  *
  */
 @Slf4j
@@ -53,33 +53,19 @@ public class EgovWebApplicationInitializer
             "EgovWebApplicationInitializer START-============================================"
         );
 
-        // ---
-        ----------------------------------------------------------// Spring Root Context 설정
-        // ---
-        ----------------------------------------------------------addRootContext(
-            servletContext
-        );
+        // Spring Root Context 설정
+        addRootContext(servletContext);
 
-        // ---
-        ----------------------------------------------------------// Spring Servlet Context 설정
-        // ---
-        ----------------------------------------------------------addWebServletContext(
-            servletContext
-        );
+        // Spring Servlet Context 설정
+        addWebServletContext(servletContext);
 
-        // ---
-        ----------------------------------------------------------// Egov Web ServletContextListener 설정 - System property setting
-        // ---
-        ----------------------------------------------------------servletContext.addListener(
+        // Egov Web ServletContextListener 설정 - System property setting
+        servletContext.addListener(
             new egovframework.com.config.EgovWebServletContextListener()
         );
 
-        // ---
-        ----------------------------------------------------------// 필터설정
-        // ---
-        ----------------------------------------------------------addFilters(
-            servletContext
-        );
+        // 필터설정
+        addFilters(servletContext);
 
         log.debug(
             "EgovWebApplicationInitializer END-============================================"
@@ -88,7 +74,7 @@ public class EgovWebApplicationInitializer
 
     /**
      * @param servletContext
-     * Root Context를 등록한다.
+     *                       Root Context를 등록한다.
      */
     private void addRootContext(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
@@ -99,7 +85,7 @@ public class EgovWebApplicationInitializer
 
     /**
      * @param servletContext
-     * Servlet Context를 등록한다.
+     *                       Servlet Context를 등록한다.
      */
 
     private void addWebServletContext(ServletContext servletContext) {
@@ -117,16 +103,16 @@ public class EgovWebApplicationInitializer
 
     /**
      * @param servletContext
-     * 필터들을 등록 한다.
+     *                       필터들을 등록 한다.
      */
     private void addFilters(ServletContext servletContext) {
         addEncodingFilter(servletContext);
-        //		addCORSFilter(servletContext);
+        // addCORSFilter(servletContext);
     }
 
     /**
      * @param servletContext
-     * Spring CharacterEncodingFilter 설정
+     *                       Spring CharacterEncodingFilter 설정
      */
     private void addEncodingFilter(ServletContext servletContext) {
         FilterRegistration.Dynamic characterEncoding = servletContext.addFilter(
@@ -139,12 +125,13 @@ public class EgovWebApplicationInitializer
     }
     /**
      * @param servletContext
-     * CORSFilter 설정
+     *                       CORSFilter 설정
      */
-    //	private void addCORSFilter(ServletContext servletContext) {
-    //		FilterRegistration.Dynamic corsFilter = servletContext.addFilter("SimpleCORSFilter",
-    //			new SimpleCORSFilter());
-    //		corsFilter.addMappingForUrlPatterns(null, false, "*.do");
-    //	}
+    // private void addCORSFilter(ServletContext servletContext) {
+    // FilterRegistration.Dynamic corsFilter =
+    // servletContext.addFilter("SimpleCORSFilter",
+    // new SimpleCORSFilter());
+    // corsFilter.addMappingForUrlPatterns(null, false, "*.do");
+    // }
 
 }

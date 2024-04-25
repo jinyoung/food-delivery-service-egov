@@ -13,27 +13,15 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  * @author 공통서비스 장동한
  * @since 2010.11.09
  * @version 1.0
- * @see <pre>
+ * @see
+ *
+ *      <pre>
  * &lt;&lt; 개정이력(Modification Information) &gt;&gt;
  *
  *   수정일      수정자           수정내용
- *  ---
----
--    ---
----
---    ---
----
----
----
----
----
----
----
----
-
  *   2010.11.09  장동한          최초 생성
  *
- * </pre>
+ *      </pre>
  */
 public class EgovComCrossSiteHndlr extends BodyTagSupport {
 
@@ -67,7 +55,7 @@ public class EgovComCrossSiteHndlr extends BodyTagSupport {
     // Construction and initialization
 
     private String m_sDiffChar = "()[]{}\"',:;= \t\r\n%!+-";
-    //private String m_sDiffChar ="()[]{}\"',:;=%!+-";
+    // private String m_sDiffChar ="()[]{}\"',:;=%!+-";
     private String m_sArrDiffChar[] = {
         "&#40;",
         "&#41;",
@@ -82,9 +70,9 @@ public class EgovComCrossSiteHndlr extends BodyTagSupport {
         "&#59;",
         "&#61;",
         " ",
-        "\t", //" ","\t",
+        "\t", // " ","\t",
         "\r",
-        "\n", //"\r","\n",
+        "\n", // "\r","\n",
         "&#37;",
         "&#33;",
         "&#43;",
@@ -126,13 +114,13 @@ public class EgovComCrossSiteHndlr extends BodyTagSupport {
         // pooling tag handlers)
 
         JspWriter out = pageContext.getOut();
-        //log.debug("EgovComCrossSiteFilter> ============================");
+        // log.debug("EgovComCrossSiteFilter> ============================");
         try {
             // print value if available; otherwise, try 'default'
             if (value != null) {
-                //log.debug("EgovComCrossSiteFilter> =value");
+                // log.debug("EgovComCrossSiteFilter> =value");
                 String sWriteEscapedXml = getWriteEscapedXml();
-                //log.debug("EgovComCrossSiteFilter sWriteEscapedXml>" + sWriteEscapedXml);
+                // log.debug("EgovComCrossSiteFilter sWriteEscapedXml>" + sWriteEscapedXml);
                 out.print(sWriteEscapedXml);
                 return SKIP_BODY;
             } else {
@@ -141,13 +129,13 @@ public class EgovComCrossSiteHndlr extends BodyTagSupport {
                     needBody = true;
                     return EVAL_BODY_BUFFERED;
                 }
-                //log.debug("EgovComCrossSiteFilter def> ="+def);
+                // log.debug("EgovComCrossSiteFilter def> ="+def);
 
                 // if we do have 'default', print it
                 else {
                     // good 'default'
                     out(pageContext, escapeXml, def);
-                    //log.debug("EgovComCrossSiteFilter> ="+def);
+                    // log.debug("EgovComCrossSiteFilter> ="+def);
                 }
                 return SKIP_BODY;
             }
@@ -160,17 +148,17 @@ public class EgovComCrossSiteHndlr extends BodyTagSupport {
     @Override
     public int doEndTag() throws JspException {
         try {
-            //log.debug("EgovComCrossSiteFilter ==== doEndTag");
+            // log.debug("EgovComCrossSiteFilter ==== doEndTag");
             if (!needBody) {
                 return EVAL_PAGE; // nothing more to do
             }
 
             // trim and print out the body
             if (bodyContent != null && bodyContent.getString() != null) {
-                //String sWriteEscapedXml = getWriteEscapedXml();
-                //out2(pageContext, escapeXml, sWriteEscapedXml.toString());
-                //log.debug("EgovComCrossSiteFilter> end");
-                //log.debug("EgovComCrossSiteFilter sWriteEscapedXml > sWriteEscapedXml");
+                // String sWriteEscapedXml = getWriteEscapedXml();
+                // out2(pageContext, escapeXml, sWriteEscapedXml.toString());
+                // log.debug("EgovComCrossSiteFilter> end");
+                // log.debug("EgovComCrossSiteFilter sWriteEscapedXml > sWriteEscapedXml");
                 out(pageContext, escapeXml, bodyContent.getString().trim());
             }
             return EVAL_PAGE;
@@ -285,8 +273,8 @@ public class EgovComCrossSiteHndlr extends BodyTagSupport {
         int length = text.length();
         char[] buffer = text.toCharArray();
         boolean booleanDiff = false;
-        //String sDiffChar
-        //String sArrDiffChar
+        // String sDiffChar
+        // String sArrDiffChar
         char[] cDiffChar = this.m_sDiffChar.toCharArray();
 
         for (int i = 0; i < length; i++) {
@@ -308,18 +296,18 @@ public class EgovComCrossSiteHndlr extends BodyTagSupport {
                 char[] escaped = specialCharactersRepresentation[c];
                 if (escaped != null) {
                     // add unescaped portion
-                    //if (start < i) {
-                    //	sRtn = sRtn + text.substring(start, i - start);
-                    //}
+                    // if (start < i) {
+                    // sRtn = sRtn + text.substring(start, i - start);
+                    // }
                     // add escaped xml
-                    //sRtn = sRtn + escaped;
-                    //log.debug(buffer[i]+" :: " + escaped);
+                    // sRtn = sRtn + escaped;
+                    // log.debug(buffer[i]+" :: " + escaped);
                     for (int j = 0; j < escaped.length; j++) {
-                        //log.debug(buffer[i]+" :>: " + escaped[j]);
+                        // log.debug(buffer[i]+" :>: " + escaped[j]);
                         sRtn = sRtn + escaped[j];
                     }
-                    //sRtn = sRtn+ escaped.toString();
-                    //sRtn = sRtn + String.valueOf(buffer[i]);
+                    // sRtn = sRtn+ escaped.toString();
+                    // sRtn = sRtn + String.valueOf(buffer[i]);
                     start = i + 1;
                 } else {
                     sRtn = sRtn + c;
@@ -350,8 +338,8 @@ public class EgovComCrossSiteHndlr extends BodyTagSupport {
         int length = text.length();
         char[] buffer = text.toCharArray();
         boolean booleanDiff = false;
-        //String sDiffChar
-        //String sArrDiffChar
+        // String sDiffChar
+        // String sArrDiffChar
         char[] cDiffChar = this.m_sDiffChar.toCharArray();
 
         for (int i = 0; i < length; i++) {
@@ -373,18 +361,18 @@ public class EgovComCrossSiteHndlr extends BodyTagSupport {
                 char[] escaped = specialCharactersRepresentation[c];
                 if (escaped != null) {
                     // add unescaped portion
-                    //if (start < i) {
-                    //	sRtn = sRtn + text.substring(start, i - start);
-                    //}
+                    // if (start < i) {
+                    // sRtn = sRtn + text.substring(start, i - start);
+                    // }
                     // add escaped xml
-                    //sRtn = sRtn + escaped;
-                    //log.debug(buffer[i]+" :: " + escaped);
+                    // sRtn = sRtn + escaped;
+                    // log.debug(buffer[i]+" :: " + escaped);
                     for (int j = 0; j < escaped.length; j++) {
-                        //log.debug(buffer[i]+" :>: " + escaped[j]);
+                        // log.debug(buffer[i]+" :>: " + escaped[j]);
                         sRtn = sRtn + escaped[j];
                     }
-                    //sRtn = sRtn+ escaped.toString();
-                    //sRtn = sRtn + String.valueOf(buffer[i]);
+                    // sRtn = sRtn+ escaped.toString();
+                    // sRtn = sRtn + String.valueOf(buffer[i]);
                     start = i + 1;
                 } else {
                     sRtn = sRtn + c;
@@ -412,28 +400,28 @@ public class EgovComCrossSiteHndlr extends BodyTagSupport {
         this.escapeXml = escapeXml;
     }
     /*
-    public static void main(String[] args) throws IOException
-    {
-
-    	EgovComCrossSiteHndlr egovComCrossSiteHndlr = new EgovComCrossSiteHndlr();
-
-    	egovComCrossSiteHndlr.value = "TRNSMIT";
-
-    	String sCrossSiteHndlr = egovComCrossSiteHndlr.getWriteEscapedXml();
-    	//log.debug("writeEscapedXml " + egovComCrossSiteHndlr.getWriteEscapedXml());
-
-    	log.debug("sCrossSiteHndlr|"+ sCrossSiteHndlr + "|");
-
-    	try{
-    		log.debug("TRY TEST 1");
-    		throw new Exception();
-    	}catch(Exception e){
-    		log.debug("TRY TEST 2");
-    	}finally{
-    		log.debug("TRY TEST 3");
-
-    	}
-
-    }
-    */
+     * public static void main(String[] args) throws IOException
+     * {
+     *
+     * EgovComCrossSiteHndlr egovComCrossSiteHndlr = new EgovComCrossSiteHndlr();
+     *
+     * egovComCrossSiteHndlr.value = "TRNSMIT";
+     *
+     * String sCrossSiteHndlr = egovComCrossSiteHndlr.getWriteEscapedXml();
+     * //log.debug("writeEscapedXml " + egovComCrossSiteHndlr.getWriteEscapedXml());
+     *
+     * log.debug("sCrossSiteHndlr|"+ sCrossSiteHndlr + "|");
+     *
+     * try{
+     * log.debug("TRY TEST 1");
+     * throw new Exception();
+     * }catch(Exception e){
+     * log.debug("TRY TEST 2");
+     * }finally{
+     * log.debug("TRY TEST 3");
+     *
+     * }
+     *
+     * }
+     */
 }
