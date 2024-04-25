@@ -12,17 +12,6 @@ import { itemIdxByPage } from 'utils/calc';
 
 function EgovGalleryList(props) {
     console.group("EgovGalleryList");
-    console.log("[Start] EgovGalleryList ---
----
----
----
----
----
----
----
----
----
-");
     console.log("EgovGalleryList [props] : ", props);
 
     const location = useLocation();
@@ -72,12 +61,8 @@ function EgovGalleryList(props) {
                     const listIdx = itemIdxByPage(resultCnt , currentPageNo, pageSize, index);
 
                     mutListTag.push(
-                        <Link to={{pathname: URL.INFORM_GALLERY_DETAIL}}
-                            state={{
-                                nttId: item.nttId,
-                                bbsId: item.bbsId,
-                                searchCondition: searchCondition
-}}                            key={listIdx} className="list_item" >
+                        <Link to=
+                            state=                            key={listIdx} className="list_item" >
                             <div>{listIdx}</div>
                             {(item.replyLc * 1 ? true : false) &&
                                 <><div className="al reply">
@@ -108,17 +93,6 @@ function EgovGalleryList(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    console.log("---
----
----
----
----
----
----
----
----
----
-EgovGalleryList [End]");
     console.groupEnd("EgovGalleryList");
     return (
         <div className="container">
@@ -178,7 +152,7 @@ EgovGalleryList [End]");
                                 </li>
                                 {user.id && masterBoard.bbsUseFlag === 'Y' &&
                                     <li>
-                                        <Link to={URL.INFORM_GALLERY_CREATE} state={{bbsId: bbsId}} className="btn btn_blue_h46 pd35">등록</Link>
+                                        <Link to={URL.INFORM_GALLERY_CREATE} state= className="btn btn_blue_h46 pd35">등록</Link>
                                     </li>
                                 }
                             </ul>

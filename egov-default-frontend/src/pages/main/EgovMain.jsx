@@ -6,17 +6,6 @@ import URL from 'constants/url';
 
 function EgovMain(props) {
     console.group("EgovMain");
-    console.log("[Start] EgovMain ---
----
----
----
----
----
----
----
----
----
-");
     console.log("EgovMain [props] : ", props);
 
     const location = useLocation();
@@ -102,17 +91,6 @@ function EgovMain(props) {
         retrieveList();
     }, [retrieveList]);
 
-    console.log("---
----
----
----
----
----
----
----
----
----
-EgovMain [End]");
     console.groupEnd("EgovMain");
 
     return (

@@ -11,17 +11,6 @@ import { itemIdxByPage } from 'utils/calc';
 
 function EgovAdminBoardList(props) {
     console.group("EgovAdminBoardList");
-    console.log("[Start] EgovAdminBoardList ---
----
----
----
----
----
----
----
----
----
-");
     console.log("EgovAdminBoardList [props] : ", props);
 
     const location = useLocation();
@@ -68,11 +57,8 @@ function EgovAdminBoardList(props) {
 
                     mutListTag.push(
                         <Link
-                            to={{pathname: URL.ADMIN_BOARD_MODIFY}}
-                            state={{
-                                bbsId: item.bbsId,
-                                searchCondition: searchCondition
-}}                            key={listIdx}
+                            to=
+                            state=                            key={listIdx}
                             className="list_item">
                             <div>{listIdx}</div>
                             <div>{item.bbsNm}</div>
@@ -98,17 +84,6 @@ function EgovAdminBoardList(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    console.log("---
----
----
----
----
----
----
----
----
----
-EgovAdminBoardList [End]");
     console.groupEnd("EgovAdminBoardList");
     return (
         <div className="container">
