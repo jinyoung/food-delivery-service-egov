@@ -4,6 +4,11 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import CODE from 'constants/code';
 import URL from 'constants/url';
 
+
+              import Order from 'pages/orderManagement/Order';
+              import Rider from 'pages/riderManagement/Rider';
+
+
 //COMMON
 import EgovError from 'components/EgovError';
 import EgovFooter from 'components/EgovFooter';
@@ -135,6 +140,12 @@ const SecondRoutes = () => {
     <>
       <EgovHeader />
       <Routes>
+          <Route path="/orderManagements/orders" element={<Order />} />
+          <Route path="/riderManagements/riders" element={<Rider />} />
+
+          <Route path={URL.MAIN} element={<EgovMain />} />
+
+
         {/* MAIN */}
         <Route path={URL.MAIN} element={<EgovMain />} />
 

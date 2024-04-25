@@ -1,28 +1,29 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+-
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
-import * as EgovNet from 'api/egovFetch';
-import { GALLERY_BBS_ID } from 'config';
-import URL from 'constants/url';
+import * as EgovNet from 'api/egovFetch'
+import { NOTICE_BBS_ID } from 'config'
+import URL from 'constants/url'
 
-import EgovPaging from 'components/EgovPaging';
-import { default as EgovLeftNav } from 'components/leftmenu/EgovLeftNavInform';
+import EgovPaging from 'components/EgovPaging'
+import { default as EgovLeftNav } from 'components/leftmenu/EgovLeftNavInform'
 
-import { itemIdxByPage } from 'utils/calc';
+import { itemIdxByPage } from 'utils/calc'
 
-function EgovGalleryList(props) {
-    console.group("EgovGalleryList");
-    console.log("EgovGalleryList [props] : ", props);
+function EgovNoticeList(props) {
+    console.group("EgovNoticeList");
+    console.log("EgovNoticeList [props] : ", props);
 
     const location = useLocation();
-    console.log("EgovGalleryList [location] : ", location);
+    console.log("EgovNoticeList [location] : ", location);
 
-    const cndRef = useRef();
+	const cndRef = useRef();
     const wrdRef = useRef();
 
-    const bbsId = GALLERY_BBS_ID;
+    const bbsId = location.state?.bbsId || NOTICE_BBS_ID; 
 
-    // eslint-disable-next-line no-unused-vars
+	// eslint-disable-next-line no-unused-vars
     const [searchCondition, setSearchCondition] = useState(location.state?.searchCondition || { bbsId: bbsId, pageIndex: 1, searchCnd: '0', searchWrd: '' });// 기존 조회에서 접근 했을 시 || 신규로 접근 했을 시
     const [masterBoard, setMasterBoard] = useState({});
     const [user, setUser] = useState({});
@@ -31,9 +32,9 @@ function EgovGalleryList(props) {
     const [listTag, setListTag] = useState([]);
 
     const retrieveList = useCallback((searchCondition) => {
-        console.groupCollapsed("EgovGalleryList.retrieveList()");
+        console.groupCollapsed("EgovNoticeList.retrieveList()");
 
-        const retrieveListURL = '/board'+EgovNet.getQueryString(searchCondition);
+        const retrieveListURL = '/board'+EgovNet.getQueryString(searchCondition);;
         const requestOptions = {
             method: "GET",
             headers: {
@@ -50,7 +51,7 @@ function EgovGalleryList(props) {
 
                 let mutListTag = [];
                 mutListTag.push(<p className="no_data" key="0">검색된 결과가 없습니다.</p>); // 게시판 목록 초기값
-
+                
                 const resultCnt = parseInt(resp.result.resultCnt);
                 const currentPageNo = resp.result.paginationInfo.currentPageNo;
                 const pageSize = resp.result.paginationInfo.pageSize;
@@ -61,21 +62,23 @@ function EgovGalleryList(props) {
                     const listIdx = itemIdxByPage(resultCnt , currentPageNo, pageSize, index);
 
                     mutListTag.push(
-                        <Link to={{pathname: URL.INFORM_GALLERY_DETAIL}}
+                        <Link
+                            to={{pathname: URL.INFORM_NOTICE_DETAIL}}
                             state={{
                                 nttId: item.nttId,
                                 bbsId: item.bbsId,
                                 searchCondition: searchCondition
-}}                            key={listIdx} className="list_item" >
+}}                            key={listIdx}
+                            className="list_item" >
                             <div>{listIdx}</div>
                             {(item.replyLc * 1 ? true : false) &&
-                                <><div className="al reply">
+                                <div className="al reply">
                                     {item.nttSj}
-                                </div></>}
+                                </div>}
                             {(item.replyLc * 1 ? false : true) &&
-                                <><div className="al">
+                                <div className="al">
                                     {item.nttSj}
-                                </div></>}
+                                </div>}
                             <div>{item.frstRegisterNm}</div>
                             <div>{item.frstRegisterPnttm}</div>
                             <div>{item.inqireCo}</div>
@@ -88,16 +91,15 @@ function EgovGalleryList(props) {
                 console.log("err response : ", resp);
             }
         );
-        console.groupEnd("EgovGalleryList.retrieveList()");
+        console.groupEnd("EgovNoticeList.retrieveList()");
     },[]);
 
-    //======================================================
     useEffect(() => {
         retrieveList(searchCondition);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    console.groupEnd("EgovGalleryList");
+    console.groupEnd("EgovNoticeList");
     return (
         <div className="container">
             <div className="c_wrap">
@@ -116,7 +118,7 @@ function EgovGalleryList(props) {
                     <EgovLeftNav></EgovLeftNav>
                     {/* <!--// Navigation --> */}
 
-                    <div className="contents SITE_GALLARY_LIST" id="contents">
+                    <div className="contents NOTICE_LIST" id="contents">
                         {/* <!-- 본문 --> */}
 
                         <div className="top_tit">
@@ -156,7 +158,7 @@ function EgovGalleryList(props) {
                                 </li>
                                 {user.id && masterBoard.bbsUseFlag === 'Y' &&
                                     <li>
-                                        <Link to={URL.INFORM_GALLERY_CREATE} state={{bbsId: bbsId}} className="btn btn_blue_h46 pd35">등록</Link>
+                                        <Link to={URL.INFORM_NOTICE_CREATE} state={{bbsId: bbsId}} className="btn btn_blue_h46 pd35">등록</Link>
                                     </li>
                                 }
                             </ul>
@@ -195,4 +197,6 @@ function EgovGalleryList(props) {
 }
 
 
-export default EgovGalleryList;
+export default EgovNoticeList;
+
+

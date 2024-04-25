@@ -67,9 +67,14 @@ function EgovHeader() {
                 <div className="gnb">
                     <h2 className="blind">주메뉴</h2>
                     <ul>
+
                         <li><NavLink to={URL.ABOUT} className={({ isActive }) => (isActive ? "cur" : "")}>사이트소개</NavLink></li>
-                        <li><NavLink to={URL.INTRO} className={({ isActive }) => (isActive ? "cur" : "")}>정보마당</NavLink></li>
-                        <li><NavLink to={URL.SUPPORT} className={({ isActive }) => (isActive ? "cur" : "")}>고객지원</NavLink></li>
+
+                    <li><NavLink to="/orderManagements/orders" className={({ isActive }) => (isActive ? "cur" : "")}>Order</NavLink></li>
+
+
+                    <li><NavLink to="/riderManagements/riders" className={({ isActive }) => (isActive ? "cur" : "")}>Rider</NavLink></li>
+
                         <li><NavLink to={URL.INFORM} className={({ isActive }) => (isActive ? "cur" : "")}>알림마당</NavLink></li>
                         {sessionUserSe ==='USR' &&
                             <li><NavLink to={URL.ADMIN} className={({ isActive }) => (isActive ? "cur" : "")}>사이트관리</NavLink></li>
